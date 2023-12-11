@@ -4,14 +4,16 @@ import "fmt"
 
 func main() {
 	inputChannel := make(chan int)
-	outputChannel := make(chan int, 10)
+	outputChannel := make(chan int)
 	go squareIt(inputChannel, outputChannel)
 	for i := 0; i < 10; i++ {
 		inputChannel <- i
+		j := outputChannel
+		fmt.Println(j)
 	}
-	for for i := 0; i < 10; i++ {
-		fmt.Println(<-outputChannel)
-	}
+	// for i := range outputChannel {
+	// 	fmt.Println(i)
+	// }
 }
 
 func squareIt(inputChan, outputChan chan int) {
