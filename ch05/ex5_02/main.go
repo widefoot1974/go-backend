@@ -8,12 +8,10 @@ func main() {
 	go squareIt(inputChannel, outputChannel)
 	for i := 0; i < 10; i++ {
 		inputChannel <- i
-		j := outputChannel
-		fmt.Println(j)
 	}
-	// for i := range outputChannel {
-	// 	fmt.Println(i)
-	// }
+	for i := range outputChannel {
+		fmt.Println(i)
+	}
 }
 
 func squareIt(inputChan, outputChan chan int) {
